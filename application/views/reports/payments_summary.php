@@ -17,16 +17,16 @@
 
 <div class="col-lg-3">
 	<label>From : </label>
-	<div class="form-group input-group date" style="margin-left:0;">
-	   <input class="form-control" size="16" type="text" name="from_date" readonly id="from_date"/>
+	<div class="form-group input-group" style="margin-left:0;">
+	   <input class="form-control" size="16" type="text" name="from_date" id="from_date"/>
 		<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
 	</div>
 </div>
 
 <div class="col-lg-3">
 	<label>To : </label>
-	<div class="form-group input-group date" style="margin-left:0;">
-	   <input class="form-control" size="16" type="text" name="to_date" readonly id="to_date"/>
+	<div class="form-group input-group" style="margin-left:0;">
+	   <input class="form-control" size="16" type="text" name="to_date" id="to_date"/>
 		<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
 	</div>
 </div>
@@ -91,3 +91,12 @@ else
 ?>
 </tbody>
 </table>
+
+<script>
+
+$('#from_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
+$('#to_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
+
+//$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
+
+</script>

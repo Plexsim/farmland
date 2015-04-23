@@ -6,7 +6,7 @@
 		
 <div class="row">
 <!-- Total unpaid amount section -->
-<div class="col-lg-6">
+<div class="col-lg-12">
   <div class="panel panel-yellow">
       <div class="panel-heading">
           <h3 class="panel-title">Total unpaid amount</h3>
@@ -17,7 +17,7 @@
   </div>
 </div>
 <!-- Total unpaid amount section -->
-<div class="col-lg-6">
+<!--div class="col-lg-6">
       <div class="panel panel-red">
       <div class="panel-heading"> 
           <h3 class="panel-title">Total overdue amount</h3>
@@ -26,7 +26,7 @@
           <span class="pending_bal huge"><?php echo format_amount($invoice_stats['overdue_amount'], true, 'before'); ?></span>
       </div>
     </div>
-</div>
+</div-->
 </div>
 <hr/>
 

@@ -71,7 +71,7 @@ $('html').click(function() {
 	  <tr class="table_header">
 		<th>ITEM</th>
 		<th>DESCRIPTION</th>
-		<th>TAX </th>
+		<!--th>TAX </th-->
 		<th>QUANTITY</th>
 		<th class="text-right">UNIT PRICE</th>
 		<th class="text-right">DISCOUNT</th>
@@ -85,7 +85,7 @@ $('html').click(function() {
 	<tr class="transaction-row">
 	<td><?php echo $item['item_name'];?></td>
 	<td style="width: 30%"><?php echo $item['item_description'];?></td>
-	<td><?php echo ($item['item_taxrate_id'] !=0 ) ? $item['tax_rate_name'].' - '.$item['tax_rate_percent'].'%' : '0.00%';?></td>
+	<!--td><?php echo ($item['item_taxrate_id'] !=0 ) ? $item['tax_rate_name'].' - '.$item['tax_rate_percent'].'%' : '0.00%';?></td-->
 	<td><?php echo $item['item_quantity'];?></td>
 	<td class="text-right" style="width: 10%"><?php echo format_amount($item['item_price']); ?></td>
 	<td class="text-right" style="width: 10%"><?php echo format_amount($item['item_discount']); ?></td>
@@ -94,16 +94,16 @@ $('html').click(function() {
 	<?php
 	}
 	?>
-	<tr><td colspan="6" class="text-right">ITEMS TOTAL COST : </td><td class="text-right"><label><?php echo format_amount($invoice_details['invoice_totals']['item_total']);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">TOTAL TAX : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_totals']['tax_total']);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">SUB TOTAL : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['item_total'] + $invoice_details['invoice_totals']['tax_total']);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">INVOICE DISCOUNT : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">NEW SUB TOTAL : </td><td class="text-right"><label><?php echo format_amount($invoice_details['invoice_totals']['sub_total'] - $invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">AMOUNT PAID : </td><td class="text-right no-border invoice_amount_paid"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_paid']);?></label></td></tr>
-	<tr><td colspan="6" class="text-right no-border">AMOUNT DUE : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_due']);?></label></td>
+	<!--tr><td colspan="5" class="text-right">ITEMS TOTAL COST : </td><td class="text-right"><label><?php echo format_amount($invoice_details['invoice_totals']['item_total']);?></label></td></tr-->
+	<!--tr><td colspan="5" class="text-right no-border">TOTAL TAX : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_totals']['tax_total']);?></label></td></tr-->
+	<tr><td colspan="5" class="text-right no-border">SUB TOTAL : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['item_total'] + $invoice_details['invoice_totals']['tax_total']);?></label></td></tr>
+	<tr><td colspan="5" class="text-right no-border">INVOICE DISCOUNT : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
+	<tr><td colspan="5" class="text-right no-border">NEW SUB TOTAL : </td><td class="text-right"><label><?php echo format_amount($invoice_details['invoice_totals']['sub_total'] - $invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
+	<tr><td colspan="5" class="text-right no-border">AMOUNT PAID : </td><td class="text-right no-border invoice_amount_paid"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_paid']);?></label></td></tr>
+	<tr><td colspan="5" class="text-right no-border">AMOUNT DUE : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_due']);?></label></td>
 	</tr>
-<tr class="table_header"><td colspan="7"></td></tr>
-<tr><td colspan="7">
+<tr class="table_header"><td colspan="6"></td></tr>
+<tr><td colspan="6">
 <h4>Invoice Terms </h4>
 <?php echo $invoice_details['invoice_details']->invoice_terms; ?>
 <hr/>

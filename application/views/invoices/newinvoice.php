@@ -50,17 +50,17 @@
 								</div>
 								
 								<label>Invoice Date </label>
-								<div class="form-group input-group date" style="margin-left:0;">
-								   <input class="date form-control" size="16" type="text" name="invoice_date" readonly id="invoice_date"/>
+								<div class="form-group input-group" style="margin-left:0;">
+								   <input class="date form-control" size="16" type="text" name="invoice_date" id="invoice_date"/>
 									<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
 								</div>
 								
 								
-								<label>Due Date </label>
+								<!--label>Due Date </label>
 								<div class="form-group input-group date" style="margin-left:0;">
 								   <input class="date form-control" size="16" type="text" name="invoice_due_date" readonly id="invoice_due_date" />
 									<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
-								</div>
+								</div-->
 								
 							  </div>
 							</div>
@@ -134,10 +134,10 @@
                     <td colspan="6" class="no-border">Amount Paid : </td>
                     <td class="invoice_grand_total"><label><span id="items_total_discount"><?php echo format_amount(0); ?></span></label></td>
                   </tr>
-				  <tr class="text-right">
+				  <!--tr class="text-right">
                     <td colspan="6" class="no-border "> Total Amount Due : </td>
                     <td class="invoice_amount_due"><label><span id="invoice_amount_due"><?php echo format_amount(0); ?></span></label></td>
-                  </tr>
+                  </tr-->
                 </tbody>
               </table>
 			  
@@ -155,3 +155,11 @@
           </div>
         </div><!-- /.row -->
 </div><!-- /#page-wrapper -->
+								
+<script>
+
+$('#invoice_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
+
+//$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
+
+</script>

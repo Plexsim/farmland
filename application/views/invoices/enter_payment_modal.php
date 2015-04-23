@@ -52,8 +52,8 @@
 				</div>
 			</div>
 			<label class="control-label">Payment Date: </label>
-			<div class="form-group input-group date" style="margin-left:0;">
-               <input size="16" type="text" name="payment_date" class="form-control" id="payment_date" readonly />
+			<div class="form-group input-group" style="margin-left:0;">
+               <input size="16" type="text" name="payment_date" class="form-control" id="payment_date" />
                 <span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
             </div>
 
@@ -82,3 +82,13 @@
 	</div>
 	</div>
 </div>
+
+
+<script src="<?php echo base_url().JAVASCRIPTFOLDER; ?>bootstrap-datepicker.js"></script>
+<script>
+
+$('#payment_date').datepicker({
+	format: 'dd-mm-yyyy'	
+});
+
+</script>

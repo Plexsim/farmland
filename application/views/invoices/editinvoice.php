@@ -50,16 +50,16 @@
 								</div>
 								
 								<label>Invoice Date </label>
-								<div class="form-group input-group date" style="margin-left:0;">
-								   <input class="form-control" size="16" type="text" value="<?php echo (isset($invoice_details->invoice_date_created)) ?  date('d-m-Y', strtotime($invoice_details->invoice_date_created)) : ''; ?>" name="invoice_date" readonly id="invoice_date"/>
+								<div class="form-group input-group" style="margin-left:0;">
+								   <input class="form-control" size="16" type="text" value="<?php echo (isset($invoice_details->invoice_date_created)) ?  date('d-m-Y', strtotime($invoice_details->invoice_date_created)) : ''; ?>" name="invoice_date" id="invoice_date"/>
 									<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
 								</div>
 								
-								<label>Invoice Due Date </label>
+								<!--label>Invoice Due Date </label>
 								<div class="form-group input-group date" style="margin-left:0;">
 								   <input class="form-control" size="16" type="text" name="invoice_due_date" value="<?php echo (isset($invoice_details->invoice_due_date)) ? date('d-m-Y', strtotime($invoice_details->invoice_due_date)) : ''; ?>" readonly id="invoice_due_date" />
 									<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
-								</div>
+								</div-->
 								<div class="form-group">
 								<a href="javascript: void(0);" onclick="emailclient('<?php echo $invoice_details->invoice_id; ?>')" class="btn btn-large btn-success pull-right"  style="margin-right:10px"><i class="fa fa-envelope"></i> Email Invoice to Client </a>
 								</div>
@@ -261,3 +261,11 @@
           </div>
         </div><!-- /.row -->
 </div><!-- /#page-wrapper -->
+					
+<script>
+
+$('#invoice_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
+
+//$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
+
+</script>

@@ -7,16 +7,16 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="<?php echo site_url('dashboard'); ?>"> <img src="<?php echo base_url().IMAGESFOLDER.'logo.png'; ?>"></a>
+    <a class="navbar-brand" href="<?php echo site_url('dashboard'); ?>"> <img src="<?php echo base_url().IMAGESFOLDER.'tomato_word.png'; ?>"></a>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
       <li <?=(isset($activemenu) && $activemenu == 'dashboard') ? 'class="active"' : ''?>><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard </a></li>
       <li <?=(isset($activemenu) && $activemenu == 'invoices') ? 'class="active"' : ''?>><a href="<?php echo site_url('invoices'); ?>"><i class="fa fa-usd"></i> Invoices </a></li>
-      <li <?=(isset($activemenu) && $activemenu == 'overdue') ? 'class="active"' : ''?>><a href="<?php echo site_url('invoices/overdue'); ?>"><i class="fa fa-gbp"></i> Overdue Invoices </a></li>
+      <!--li <?=(isset($activemenu) && $activemenu == 'overdue') ? 'class="active"' : ''?>><a href="<?php echo site_url('invoices/overdue'); ?>"><i class="fa fa-gbp"></i> Overdue Invoices </a></li-->
       <li <?=(isset($activemenu) && $activemenu == 'clients') ? 'class="active"' : ''?>><a href="<?php echo site_url('clients'); ?>"><i class="fa fa-user"></i> Clients </a></li>
-      <li <?=(isset($activemenu) && $activemenu == 'quotes') ? 'class="active"' : ''?>><a href="<?php echo site_url('quotes');?>"><i class="fa fa-dashboard"></i> Quotes </a></li>
+      <!--li <?=(isset($activemenu) && $activemenu == 'quotes') ? 'class="active"' : ''?>><a href="<?php echo site_url('quotes');?>"><i class="fa fa-dashboard"></i> Quotes </a></li-->
       <li <?=(isset($activemenu) && $activemenu == 'products') ? 'class="active"' : ''?>><a href="<?php echo site_url('products'); ?>"><i class="fa fa-money"></i> Products </a></li>
       <li <?=(isset($activemenu) && $activemenu == 'reports') ? 'class="active"' : ''?>><a href="<?php echo site_url('reports'); ?>"><i class="fa fa-signal"></i> Reports </a></li>
     </ul>

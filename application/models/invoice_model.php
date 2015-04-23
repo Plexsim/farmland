@@ -270,6 +270,7 @@
 	{
 		$invoices = $this->db->select('*')
 				 		->from('ci_invoices')
+				 		->where('invoice_status', 'UNPAID')
 				 		->get()
 				 		->result_array();
 
