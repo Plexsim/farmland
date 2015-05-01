@@ -34,12 +34,14 @@ class Products extends MY_Controller {
 			$this->form_validation->set_rules('product_name', 'name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('product_description', 'description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('product_unit_price', 'unit price', 'trim|numeric|required|xss_clean');
+			$this->form_validation->set_rules('product_weight', 'weight', 'trim|numeric|required|xss_clean');
 			$this->form_validation->set_error_delimiters('<p class="has-error"><label class="control-label">', '</label></p>');
 			if($this->form_validation->run())
 			{
 				$product_details = array('product_name'		=> $this->input->post('product_name'),
 									  'product_description'	=> $this->input->post('product_description'),
 									  'product_unitprice'	=> $this->input->post('product_unit_price'),
+									  'product_weight'	=> $this->input->post('product_weight'),
 									 );
 				$this->common_model->dbinsert('ci_products', $product_details);
 				$this->session->set_flashdata('success', 'Product has been added successfully !!');
@@ -63,12 +65,14 @@ class Products extends MY_Controller {
 			$this->form_validation->set_rules('product_name', 'name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('product_description', 'description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('product_unit_price', 'unit price', 'trim|numeric|required|xss_clean');
+			$this->form_validation->set_rules('product_weight', 'weight', 'trim|numeric|required|xss_clean');
 			$this->form_validation->set_error_delimiters('<p class="has-error"><label class="control-label">', '</label></p>');
 			if($this->form_validation->run())
 			{
 				$product_details = array('product_name'		=> $this->input->post('product_name'),
 									  'product_description'	=> $this->input->post('product_description'),
 									  'product_unitprice'	=> $this->input->post('product_unit_price'),
+									  'product_weight'		=> $this->input->post('product_weight'),
 									 );
 				$this->common_model->update_records('ci_products', 'product_id', $product_id, $product_details);
 				$this->session->set_flashdata('success', 'Product has been updated successfully !!');

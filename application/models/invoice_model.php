@@ -150,7 +150,7 @@
 		$items = $this->db->get()->result_array();
 		foreach($items as $item_count=>$item)
 		{
-			$items[$item_count]['item_total'] = $item['item_price'] * $item['item_quantity'] - $item['item_discount'];
+			$items[$item_count]['item_total'] = $item['item_price'] * $item['item_quantity'] * $item['item_weight'] - $item['item_discount'];
 			if($item['item_taxrate_id'] != 0)
 			{
 				$tax_rate = $this->common_model->get_tax($item['item_taxrate_id']);
@@ -243,7 +243,7 @@
 		$items_total_discount = 0;
 		foreach($invoice_items->result_array() as $item_count=>$item)
 		{
-			$item_amount = ($item['item_quantity'] * $item['item_price']) - $item['item_discount'];
+			$item_amount = ($item['item_quantity'] * $item['item_price'] * $item['item_weight']) - $item['item_discount'];
 			if($item['item_taxrate_id'] != 0)
 			{
 				$tax_rate = $this->common_model->get_tax($item['item_taxrate_id']);

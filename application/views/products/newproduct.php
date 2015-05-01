@@ -44,6 +44,12 @@
                 <input class="form-control" name="product_unit_price" value="<?php echo set_value('product_unit_price');?>"/>
 				<?php echo form_error('product_unit_price'); ?>
               </div>
+              
+              <div class="form-group">
+                <label>Weight</label>
+                <input class="form-control" name="product_weight" value="<?php echo set_value('product_weight');?>"/>
+				<?php echo form_error('product_weight'); ?>
+              </div>
 
               <button type="submit" class="btn btn-large btn-success" name="createproductbtn" value="New products">Create Product</button>
               <button type="reset" class="btn btn-large btn-danger">Reset Form</button>  

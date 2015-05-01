@@ -26,6 +26,7 @@
 						$('#item_table tr:last input[name=item_name]').val(products[key].product_name);
 						$('#item_table tr:last textarea[name=item_description]').val(products[key].product_description);
 						$('#item_table tr:last input[name=item_price]').val(products[key].product_unitprice);
+						$('#item_table tr:last input[name=item_weight]').val(products[key].product_weight);
 						$('#item_table tr:last input[name=item_quantity]').val('1');
 						$('#item_table tr:last input[name=item_discount]').val('0.00');
                     }
@@ -34,6 +35,7 @@
 						$('#item_table tr:last input[name=item_name]').val(products[key].product_name);
 						$('#item_table tr:last textarea[name=item_description]').val(products[key].product_description);
 						$('#item_table tr:last input[name=item_price]').val(products[key].product_unitprice);
+						$('#item_table tr:last input[name=item_weight]').val(products[key].product_weight);
 						$('#item_table tr:last input[name=item_quantity]').val('1');
 						$('#item_table tr:last input[name=item_discount]').val('0.00');
 					}
@@ -59,6 +61,7 @@
                     <th>Product Name</th>
                     <th>Description</th>
                     <th class="text-right">Price</th>
+                    <th class="text-right">Weight</th>
                 </tr>
                 <?php foreach ($products->result_array() as $count=>$product) { ?>
                 <tr>
@@ -66,6 +69,7 @@
                     <td><?php echo $product['product_name']; ?></td>
                     <td><?php echo limit_text($product['product_description'], 30); ?></td>
                     <td class="text-right"><?php echo format_amount($product['product_unitprice'], 2); ?></td>
+                    <td class="text-right"><?php echo format_amount($product['product_weight'], 2); ?></td>
                 </tr>
                 <?php } ?>
             </table>

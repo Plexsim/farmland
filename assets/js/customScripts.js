@@ -64,8 +64,10 @@ function calculateInvoiceAmounts()
 		var row = {};
 		var quantity = $(this).find("input[name=item_quantity]").val();
 		var unit_price = $(this).find("input[name=item_price]").val();
+		var weight = $(this).find("input[name=item_weight]").val();			
+		
 		var discount = $(this).find("input[name=item_discount]").val();
-		$(this).find("input[name=item_sub_total]").val(quantity*unit_price-discount);
+		$(this).find("input[name=item_sub_total]").val(quantity*unit_price*weight-discount);
 		
 		$(this).find('input,select,textarea').each(function() 
 		{

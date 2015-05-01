@@ -64,9 +64,9 @@ class Invoices extends MY_Controller {
 		$invoice_id = $this->input->post('invoice_id');
 		foreach ($items as $item) 
 		{
-			if($item->item_quantity != '' && $item->item_price != '')
+			if($item->item_quantity != '' && $item->item_price != '' && $item->item_weight != '')
 			{
-				$item_total 	=	$item->item_quantity * $item->item_price - $item->item_discount;
+				$item_total 	=	$item->item_quantity * $item->item_price * $item->item_weight - $item->item_discount;
 				$items_total_cost = $items_total_cost + $item_total;
 				if($item->tax_rate_id != '')
 				{
@@ -103,7 +103,7 @@ class Invoices extends MY_Controller {
 		$invoice_items = 0;
 		foreach ($items as $item) 
 		{
-			if($item->item_quantity != '' && $item->item_price != '')
+			if($item->item_quantity != '' && $item->item_price != '' && $item->item_weight != '')
 			{
 				$invoice_items++;
 			}
@@ -140,7 +140,7 @@ class Invoices extends MY_Controller {
 
 				foreach ($items as $item) 
 				{
-					if($item->item_quantity != '' && $item->item_price != '')
+					if($item->item_quantity != '' && $item->item_price != '' && $item->item_weight != '')
 					{
 						$item_id = $item->item_id;
 						$item_details = array ('invoice_id'			=> $invoice_id,
@@ -150,6 +150,7 @@ class Invoices extends MY_Controller {
 											   'item_taxrate_id'	=> $item->tax_rate_id,
 											   'item_order'			=> $item->item_order,
 											   'item_price'			=> $item->item_price,
+											   'item_weight'		=> $item->item_weight,
 											   'item_discount'		=> $item->item_discount,
 											  );
 						if($item_id != '')

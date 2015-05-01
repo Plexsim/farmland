@@ -31,6 +31,7 @@
 					<th>Product Name <i class="fa fa-sort"></i></th>
 					<th>Product Description <i class="fa fa-sort"></i></th>
 					<th>Unit Price <i class="fa fa-sort"></i></th>
+					<th>Weight <i class="fa fa-sort"></i></th>
 					<th>Actions</th>
 				  </tr>
 				</thead>
@@ -45,6 +46,7 @@
 					<td><?php echo ucfirst($product['product_name']); ?></td>
 					<td><?php echo limit_text($product['product_description'], 50); ?></td>
 					<td><?php echo $product['product_unitprice']; ?></td>
+					<td><?php echo $product['product_weight']; ?></td>
 					<td>
 					<a href="<?php echo site_url('products/editproduct/'.$product['product_id']); ?>" class="btn btn-xs btn-success"><i class="fa fa-check"> Edit </i></a>
 					<a href="<?php echo site_url('products/delete/'.$product['product_id']);?>" onclick="return confirm('Are you sure you want to permanently delete this product?');" class="btn btn-danger btn-xs"><i class="fa fa-times"> Delete </i></a>

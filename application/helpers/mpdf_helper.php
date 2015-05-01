@@ -9,6 +9,13 @@ function pdf_create($html, $filename, $stream = TRUE)
     require_once(APPPATH . 'helpers/mpdf/mpdf.php');
 
     $mpdf = new mPDF();
+    $mpdf->autoScriptToLang = true;
+    $mpdf->autoLangToFont = true;
+    
+    //$pdf = $this->pdf->load();
+    //for chinese word soulution
+    $mpdf->useAdobeCJK = true;
+    $mpdf->SetAutoFont(AUTOFONT_ALL);
 
     $mpdf->SetAutoFont();
 

@@ -46,6 +46,12 @@
 				<?php echo form_error('product_unit_price'); ?>
               </div>
 
+              <div class="form-group">
+                <label>Weight</label>
+                <input class="form-control" name="product_weight" value="<?php echo (isset($product->product_weight)) ? $product->product_weight : '' ;?>"/>
+				<?php echo form_error('product_weight'); ?>
+              </div>
+              
               <button type="submit" class="btn btn-large btn-success" name="editproductbtn" value="Edit products">Update Product Details</button>
              </form>
 				  

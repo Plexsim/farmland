@@ -104,6 +104,7 @@
 					<th>Tax Rate</th>
                     <th>Quantity</i></th>
                     <th class="text-right">Unit Price</th>
+                    <th class="text-right">Weight</th>
 					<th class="text-right">Discount</th>
 					<th class="text-right">Sub-total <br/> (Tax Excl.)</th>
 					<th></th>
@@ -111,16 +112,17 @@
                 </thead>
                 <tbody>
 					<tr id="new_item" style="display: none;">
-					<td style="width:20%">
+					<td style="width:10%">
 					<input type="hidden" name="invoice_id" value="<?php echo $invoice_details->invoice_id; ?>" id="invoice_id">
 					<input type="hidden" name="item_id" value="">
 					<input name="item_name" value="" class="form-control"/></td>
-					<td style="width:25%"><textarea name="item_description" class="form-control"></textarea></td>
-					<td style="width:12%">
+					<td style="width:20%"><textarea name="item_description" class="form-control"></textarea></td>
+					<td style="width:10%">
 					<select name="tax_rate_id" id="tax_rate_id" onchange="javascript: calculateInvoiceAmounts();" class="form-control" ><?php echo $taxrates; ?></select>
 					</td>
 					<td style="width:5%"><input class="form-control" onchange="javascript: calculateInvoiceAmounts();"  name="item_quantity" value=""/></td>
 					<td class="text-right" style="width:10%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_price" value=""/></td>
+					<td class="text-right" style="width:10%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_weight" value=""/></td>
 					<td class="text-right" style="width:8%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_discount" value=""/></td>
 					<td class="text-right" style="width:10%"><input class="form-control text-right" readonly name="item_sub_total" value=""/></td>
 					<td style="width:2%"></td>
@@ -132,18 +134,18 @@
 						{
 					?>
 						<tr id="item" class="item">
-						<td style="width:20%">
+						<td style="width:10%">
 						<input type="hidden" name="invoice_id" value="<?php echo $invoice_details->invoice_id; ?>">
 						<input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
 						<input name="item_name" value="<?php echo $item['item_name']; ?>" class="form-control"/>
 						</td>
-						<td style="width:25%"><textarea name="item_description" class="form-control"><?php echo $item['item_description']; ?></textarea></td>
-						<td style="width:12%">
+						<td style="width:20%"><textarea name="item_description" class="form-control"><?php echo $item['item_description']; ?></textarea></td>
+						<td style="width:10%">
 						<select name="tax_rate_id" id="tax_rate_id" onchange="javascript: calculateInvoiceAmounts();" class="form-control" ><?php echo get_tax_select($item['item_taxrate_id']); ?></select>
 						</td>
 						<td style="width:10%"><input class="form-control" onchange="javascript: calculateInvoiceAmounts();"  name="item_quantity" value="<?php echo $item['item_quantity']; ?>"/></td>
 						<td class="text-right" style="width:10%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_price" value="<?php echo $item['item_price']; ?>"/></td>
-						
+						<td class="text-right" style="width:10%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_weight" value="<?php echo $item['item_weight']; ?>"/></td>
 						<td class="text-right" style="width:8%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_discount" value="<?php echo $item['item_discount']; ?>"/></td>
 						<td class="text-right" style="width:10%"><input class="form-control text-right" onchange="javascript: calculateInvoiceAmounts();"  name="item_sub_total" readonly value="<?php echo $item['item_total']; ?>"/></td>
 						

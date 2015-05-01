@@ -16,7 +16,7 @@ table {
 	color: #bce8f1;
 }
 body {
-	font-size: 75%;
+	font-size: 80%;
 }
 </style>
 
@@ -102,43 +102,49 @@ body {
 <table class="table table-bordered">
 	<thead>
 	  <tr class="table_header">
+	  	<th style="color: #bce8f1">NO</th>
 		<th style="color: #bce8f1">ITEM</th>
 		<th>DESCRIPTION</th>
 		<!--th>TAX </th-->
 		<th>QUANTITY</th>
-		<th class="text-right">UNIT PRICE</th>
-		<th class="text-right">DISCOUNT</th>
-		<th class="text-right">SUB TOTAL</th>
+		<th class="text-right">UNIT PRICE (RM)</th>
+		<th class="text-right">WEIGHT (KG)</th>
+		<th class="text-right">DISCOUNT (RM)</th>
+		<th class="text-right">SUB TOTAL (RM)</th>
 	  </tr>
 	</thead>
 	<tbody>
 	<?php
+	$numberItem = 0;
 	foreach ($invoice_details['invoice_items'] as $count=>$item)
 	{?>
 	<tr class="transaction-row">
+	<td><?php echo $numberItem + 1 ?></td>
 	<td><?php echo $item['item_name'];?></td>
 	<td><?php echo $item['item_description'];?></td>
 	<!--td><?php echo ($item['item_taxrate_id'] !=0 ) ? $item['tax_rate_name'].' - '.$item['tax_rate_percent'].'%' : '0.00%';?></td-->
 	<td style="text-align:center"><?php echo $item['item_quantity'];?></td>
 	<td class="text-right" style="width: 13%"><?php echo number_format($item['item_price'], 2); ?></td>
+	<td class="text-right" style="width: 13%"><?php echo number_format($item['item_weight'], 2); ?></td>
 	<td class="text-right" style="width: 10%"><?php echo number_format($item['item_discount'], 2); ?></td>
 	<td class="text-right" style="width: 14%"><?php echo number_format($item['item_price']*$item['item_quantity']-$item['item_discount'], 2); ?></td>
 	</tr>
 	<?php 
+		$numberItem++;
 	}
 	?>
 	
 	<!--tr><td colspan="5" class="text-right">ITEMS TOTAL COST : </td><td class="text-right"><label><?php echo format_amount($invoice_details['invoice_totals']['item_total']);?></label></td></tr-->
 	<!--tr><td colspan="5" class="text-right no-border">TOTAL TAX : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_totals']['tax_total']);?></label></td></tr-->
-	<tr><td colspan="5" class="text-right no-border">SUB TOTAL : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['sub_total']);?></label></td></tr>
-	<tr><td colspan="5" class="text-right no-border">INVOICE DISCOUNT : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
-	<tr><td colspan="5" class="text-right no-border">TOTAL AMOUNT : </td><td class="text-right no-border"><label><?php echo format_amount( $invoice_details['invoice_totals']['item_total'] - $invoice_details['invoice_details']->invoice_discount) ?></label></td></tr>
+	<tr><td colspan="7" class="text-right no-border">SUB TOTAL : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['sub_total']);?></label></td></tr>
+	<tr><td colspan="7" class="text-right no-border">INVOICE DISCOUNT : </td><td class="text-right no-border"><label><?php echo format_amount($invoice_details['invoice_details']->invoice_discount);?></label></td></tr>
+	<tr><td colspan="7" class="text-right no-border">TOTAL AMOUNT : </td><td class="text-right no-border"><label><?php echo format_amount( $invoice_details['invoice_totals']['item_total'] - $invoice_details['invoice_details']->invoice_discount) ?></label></td></tr>
 	<!--tr><td colspan="5" class="text-right no-border">AMOUNT PAID : </td><td class="text-right no-border invoice_amount_paid"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_paid']);?></label></td></tr-->
 	<!--tr><td colspan="5" class="text-right no-border">AMOUNT DUE : </td><td class="text-right invoice_amount_due"><label><?php echo format_amount($invoice_details['invoice_totals']['amount_due']);?></label></td-->
 	</tr>
 	
 	
-	<tr class="table_header"><td colspan="6"></td></tr>
+	<tr class="table_header"><td colspan="8"></td></tr>
 	</table>
 	<h4>Invoice Terms </h4>
 	<i><?php echo $invoice_details['invoice_details']->invoice_terms; ?></i>
