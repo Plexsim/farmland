@@ -87,6 +87,7 @@
 		$invoices_report = array();
 		$this->db->select('*');
 		$this->db->from('ci_invoices');
+		//$this->db->join('ci_invoice_items', 'ci_invoices.invoice_id = ci_invoice_items.invoice_id', 'left');		
 		$this->db->join('ci_clients', 'ci_clients.client_id = ci_invoices.client_id');
 		if($client_id != 0)
 		{	
@@ -111,6 +112,43 @@
 		}
 		return $invoices_report;
 	}
+	
+	function invoices_report_with_product($client_id = 0)
+	{
+		$invoices_report = array();
+		$this->db->select('*');
+		$this->db->from('ci_invoices');
+		$this->db->join('ci_invoice_items', 'ci_invoices.invoice_id = ci_invoice_items.invoice_id', 'left');
+		$this->db->join('ci_clients', 'ci_clients.client_id = ci_invoices.client_id');
+		if($client_id != 0)
+		{
+			$this->db->where('ci_invoices.client_id', $client_id);
+		}
+		$this->db->order_by('ci_invoices.invoice_date_created', 'DESC');
+		$invoices = $this->db->get();
+		$counter = 0;
+		foreach($invoices->result_array() as $count=>$invoice)
+		{
+			$invoice_amount = $this->get_invoice_total_amount($invoice['invoice_id']);
+			$status = ($invoice_amount['amount_paid'] > 0 && $invoice_amount['amount_paid'] < $invoice_amount['amount']) ? 'PARTIALLY PAID' : $invoice['invoice_status'];
+				
+			$invoices_report[$counter]['invoice_number']	=	$invoice['invoice_number'];
+			$invoices_report[$counter]['invoice_date']		=	$invoice['invoice_date_created'];
+			$invoices_report[$counter]['invoice_client']	=	$invoice['client_name'];
+			$invoices_report[$counter]['invoice_amount']	=	$invoice_amount['amount'];
+			$invoices_report[$counter]['invoice_status'] 	= 	$status;
+			$invoices_report[$counter]['invoice_id'] 		= 	$invoice['invoice_id'];
+			$invoices_report[$counter]['invoice_item'] 		= 	$invoice['item_name'];
+			$invoices_report[$counter]['invoice_item_quantity'] 	= 	$invoice['item_quantity'];
+			$invoices_report[$counter]['invoice_item_weight'] 		= 	$invoice['item_weight'];
+			$invoices_report[$counter]['invoice_item_price'] 		= 	$invoice['item_price'];
+			$invoices_report[$counter]['invoice_item_discount'] 	= 	$invoice['item_discount'];
+			
+			
+			$counter++;
+		}
+		return $invoices_report;
+	}
 
 	function get_invoice_total_amount($invoice_id = 0)
 	{
@@ -124,7 +162,7 @@
 		$items_total_discount = 0;
 		foreach($invoice_items->result_array() as $item_count=>$item)
 		{
-			$item_amount = ($item['item_quantity'] * $item['item_price']) - $item['item_discount'];
+			$item_amount = ($item['item_quantity'] * $item['item_price'] * $item['item_weight']) - $item['item_discount'];
 			if($item['item_taxrate_id'] != 0)
 			{
 				$tax = $this->get_tax($item['item_taxrate_id']);

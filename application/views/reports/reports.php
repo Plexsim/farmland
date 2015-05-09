@@ -53,13 +53,23 @@ function client_statement()
 function invoices_report()
 {
 	$('.loading').fadeIn('slow');
-	var client 		= $('#client_id').val();
+	var client 			= $('#client_id').val();
+	var from_date 		= $('#from_date').val();
+	var to_date 		= $('#to_date').val();
+	var status 			= $('#status').val();
+	
 	$.post("<?php echo site_url('reports/invoices_report'); ?>", {
 		client_id : client,
+		from_date : from_date,
+		to_date : to_date,
+		status : status,
 		},
 		function(data) {
 		   $('#report-body').html(data);
 		    $('.loading').fadeOut('slow');
+		    $('#from_date').val(from_date);
+		    $('#to_date').val(to_date);
+		    $('#status').val(status);
 		});
 }
 //function to display clients contact list

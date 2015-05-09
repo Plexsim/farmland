@@ -58,11 +58,12 @@ class Reports extends MY_Controller {
 	{
 		$data = array();
 		$selected = ($this->input->post('client_id')) ? $this->input->post('client_id') : 0;
-		$data['invoices_report'] 	= $this->reports_model->invoices_report($this->input->post('client_id'));
+		$data['invoices_report'] 	= $this->reports_model->invoices_report($this->input->post('client_id'), $this->input->post('from_date'), $this->input->post('to_date'), $this->input->post('status'));
 		$data['clients'] 			= $this->common_model->get_select_option('ci_clients', 'client_id', 'client_name', $selected);
 		$invoices_report 	= $this->load->view('reports/invoices_report', $data, true);
 		echo $invoices_report;
 	}
+	
 /*---------------------------------------------------------------------------------------------------------
 | Function to display clients contact list
 |----------------------------------------------------------------------------------------------------------*/	
@@ -73,4 +74,24 @@ class Reports extends MY_Controller {
 		$clients_contact_list 		= $this->load->view('reports/clients_contact_list', $data, true);
 		echo $clients_contact_list;
 	}
+	
+/*----------------------------------------------------------------------------------------------------------
+ | Function to display clients contact list
+|----------------------------------------------------------------------------------------------------------*/
+function view_report_pdf()
+{
+	$client_id 	= $this->input->get('client_id');
+	$from_date 	= $this->input->get('from_date');
+	$to_date 	= $this->input->get('to_date');
+	$status		= $this->input->get('status');
+
+	$data 		  = array();
+	$data['title'] 	 = $this->title;
+	$full_report_details = $this->reports_model->invoices_report_with_product($client_id, $from_date, $to_date, $status);
+
+	//return var_dump($full_report_details);
+	$this->load->helper('pdf');
+	$pdf_invoice = generate_pdf_report($full_report_details, true, NULL);
+}	
+	
 }
