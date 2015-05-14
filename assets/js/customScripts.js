@@ -420,6 +420,9 @@ function ajax_print_report()
 	var from_date = $('#from_date').val();
 	var to_date = $('#to_date').val();
 	var status = $('#status').val();
+	var bill_date 	= $('#bill_date').val();
+	
+	console.log("Custom Script " + bill_date);	
 		
 	$('.loading').fadeIn('slow');
 
@@ -438,10 +441,15 @@ function ajax_print_report()
 		alert('Please select status');
 		$('.loading').fadeOut('slow');
 	}
+	else if(bill_date == '')
+	{
+		alert('Please enter billing date');
+		$('.loading').fadeOut('slow');
+	}
 	else
 	{
 		$('.loading').fadeOut('slow');
-		window.location.replace(site_url+"reports/view_report_pdf?client_id="+ client + "&from_date="+from_date + "&to_date="+to_date+"&status="+status);
+		window.location.replace(site_url+"reports/view_report_pdf?client_id="+ client + "&from_date="+from_date + "&to_date="+to_date+"&status="+status+"&bill_date="+bill_date);
 	}
 }
 

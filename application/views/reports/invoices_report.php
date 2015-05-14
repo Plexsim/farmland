@@ -47,6 +47,16 @@
 </div>
 </div>
 
+<div class="row">
+	<div class="col-lg-2">
+		<label>Billing Date : </label>
+		<div class="form-group input-group" style="margin-left:0;">
+		    <input class="form-control" size="16" type="text" name="bill_date" id="bill_date"/>
+			<span class="input-group-addon add-on"><i class="fa fa-calendar" style="display: inline"></i></span>
+		</div>
+	</div>		
+</div>
+
 	<table class="table table-hover table-bordered ">
 	<thead>
 	  <tr class="table_header">
@@ -96,7 +106,7 @@ else
 
 $('#from_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
 $('#to_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
-
+$('#bill_date').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
 //$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
 
 </script>

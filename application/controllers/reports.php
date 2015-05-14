@@ -84,6 +84,7 @@ function view_report_pdf()
 	$from_date 	= $this->input->get('from_date');
 	$to_date 	= $this->input->get('to_date');
 	$status		= $this->input->get('status');
+	$bill_date	= $this->input->get('bill_date');
 
 	$data 		  = array();
 	$data['title'] 	 = $this->title;
@@ -91,7 +92,7 @@ function view_report_pdf()
 
 	//return var_dump($full_report_details);
 	$this->load->helper('pdf');
-	$pdf_invoice = generate_pdf_report($full_report_details, true, NULL);
+	$pdf_invoice = generate_pdf_report($full_report_details, true, $bill_date);
 }	
 	
 }

@@ -53,7 +53,7 @@ body {
 		<td align="center" cellpadding="0" cellspacing="0" style="padding:0px; font-size:16px;"><?php echo $name ?> <span style="font-size:8px;">(<?php echo $ssm?>)</span></td>
 	</tr>
 	<tr>
-		<td align="center" cellpadding="0" cellspacing="0" style="padding:0px; font-size:13px; font-weight: bold;">GST ID No: <?php echo $gst ?></td>
+		<td align="center" cellpadding="0" cellspacing="0" style="padding:0px; font-size:13px; font-weight: bold;"><?php echo (isset($gst) && !empty($gst)) ? 'GST ID No: '.$gst : '' ?></td>
 	</tr>
 	<tr>
 		<td align="center" cellpadding="0" cellspacing="0" style="padding:0px; font-size:10px;"><span style="font-size:10px;"><?php echo $address ?></span></td>
@@ -72,15 +72,18 @@ body {
 		<td colspan=2 align="center"><h1>STATEMENT OF ACCOUNT</h1></td>
 	</tr>	
 	<tr>
-		<td width="100%">		
+		<td width="80%">		
 			<p>Billed To : </p>
 					
 			<span style="font-size:12px;font-weight: bold"><?php echo isset($report_details[0]['invoice_client']) && !empty($report_details[0]['invoice_client']) ? $report_details[0]['invoice_client'] : '-'; ?> </span><span style="font-size:6px;"><?php echo isset($report_details[0]['invoice_client_ssm']) && !empty($report_details[0]['invoice_client_ssm']) ? '<span style="font-size:8px;">('.$report_details[0]['invoice_client_ssm'].')</span>' : ''; ?></span>			
 			<p><?php echo isset($report_details[0]['invoice_client_address']) && !empty($report_details[0]['invoice_client_address']) ? $report_details[0]['invoice_client_address'] : '-'; ?></p>								
 			<p>TEL: <?php echo isset($report_details[0]['invoice_client_phone']) && !empty($report_details[0]['invoice_client_phone']) ? $report_details[0]['invoice_client_phone'] : '-'; ?>  FAX: <?php echo isset($report_details[0]['invoice_client_fax'])&&!empty($report_details[0]['invoice_client_fax']) ? $report_details[0]['invoice_client_fax']: '-'; ?> </p>
-			<p><span style="font-weight: bold">GST ID No: <?php echo isset($report_details[0]['invoice_client_gst']) && !empty($report_details[0]['invoice_client_gst']) ? $report_details[0]['invoice_client_gst'] : '-'; ?></span></p>
+			<p><span style="font-weight: bold">GST ID No: <?php echo isset($report_details[0]['invoice_client_gst']) && !empty($report_details[0]['invoice_client_gst']) ? $report_details[0]['invoice_client_gst'] : '-'; ?></span></p>			
 			<!--p>Attn:</p-->																
-		</td>								
+		</td>
+		<td width="20%">
+			<p>Billing Date : <?php echo $bill_date ?></p>
+		</td>
 	</tr>
 	</table>
 	</div>
@@ -90,6 +93,7 @@ body {
 <table class="table table-bordered">
 	<thead>
 	  <tr class="table_header">
+	  	<th width="2%">No</th>
 		<th width="15%">DATE</th>
 		<!--th>INVOICE NUMBER</th-->		
 		<th width="25%">DESCRIPTION</th>
@@ -108,12 +112,14 @@ if( isset($report_details) && !empty($report_details))
 	
 	<?php
 	$amount = 0;
+	$number = 0;
 	foreach ($report_details as $count=>$invoice)
 	{
 		
 		
 	?>
 	<tr class="transaction-row">
+	<td><?php echo $number + 1 ?></td>
 	<td><?php echo format_date($invoice['invoice_date']);?></td>
 	<!--td><?php echo $invoice['invoice_number'];?></td-->	
 	<td><?php echo $invoice['invoice_item'];?></td>
@@ -129,11 +135,12 @@ if( isset($report_details) && !empty($report_details))
 	<td class="text-right" style="padding:0px;"><?php echo format_amount($item_total);?></td>			
 	</tr>
 	<?php
+		$number++;
 	}
 	?>
 	
 	<tr class="transaction-row">
-	  	<td colspan=5></td>
+	  	<td colspan=6></td>
 	  	<td class="text-right">Total:</td>
 	  	<td class="text-right" style="padding:0px; font-size:14px;"><?php echo format_amount($amount) ?></td>
 	</tr>

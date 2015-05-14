@@ -37,13 +37,14 @@ function generate_pdf_quote($quote_data, $stream = TRUE)
 
     return pdf_create($html, $filename, $stream);
 }
-function generate_pdf_report($full_report_data, $stream = TRUE)
+function generate_pdf_report($full_report_data, $stream = TRUE, $bill_date)
 {
 	$CI = & get_instance();
 
 	$data = array(
 			'report_details'   => $full_report_data,
-			'output_type'       => 'pdf'
+			'output_type'       => 'pdf',
+			'bill_date'		=> $bill_date,
 	);
 
 	$html = $CI->load->view('pdf_templates/report', $data, TRUE);

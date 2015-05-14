@@ -57,12 +57,16 @@ function invoices_report()
 	var from_date 		= $('#from_date').val();
 	var to_date 		= $('#to_date').val();
 	var status 			= $('#status').val();
+	var bill_date 		= $('#bill_date').val();
+
+	console.log(bill_date);	
 	
 	$.post("<?php echo site_url('reports/invoices_report'); ?>", {
 		client_id : client,
 		from_date : from_date,
 		to_date : to_date,
 		status : status,
+		bill_date : bill_date,
 		},
 		function(data) {
 		   $('#report-body').html(data);
@@ -70,6 +74,7 @@ function invoices_report()
 		    $('#from_date').val(from_date);
 		    $('#to_date').val(to_date);
 		    $('#status').val(status);
+		    $('#bill_date').val(bill_date);		    
 		});
 }
 //function to display clients contact list
