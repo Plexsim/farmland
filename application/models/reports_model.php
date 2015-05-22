@@ -82,7 +82,7 @@
 		$stats['pending_balance']		=	$total_invoiced  - $total_received;
 		return $stats;
 	}
-	function invoices_report($client_id = 0)
+	function invoices_report($client_id = 0, $from_date = '', $to_date = '', $status = '')
 	{
 		$invoices_report = array();
 		$this->db->select('*');
@@ -93,13 +93,26 @@
 		{	
 			$this->db->where('ci_invoices.client_id', $client_id);
 		}
+		if($from_date != '' && $to_date != '')
+		{
+			$this->db->where('invoice_date_created >=', date('Y-m-d', strtotime($from_date)));
+			$this->db->where('invoice_date_created <=', date('Y-m-d', strtotime($to_date)));
+		}
+		if($status != '')
+		{
+			$this->db->where('ci_invoices.invoice_status', $status);
+		}
+		
 		$this->db->order_by('ci_invoices.invoice_date_created', 'DESC');
 		$invoices = $this->db->get();
 		$counter = 0;
+				
 		foreach($invoices->result_array() as $count=>$invoice)
 		{
+			// error is inside this function
 			$invoice_amount = $this->get_invoice_total_amount($invoice['invoice_id']);
-			$status = ($invoice_amount['amount_paid'] > 0 && $invoice_amount['amount_paid'] < $invoice_amount['amount']) ? 'PARTIALLY PAID' : $invoice['invoice_status'];
+									
+			$status = ($invoice_amount['amount_paid'] > 0 && round(floatval($invoice_amount['amount_paid'])) < round(floatval($invoice_amount['amount']))) ? 'PARTIALLY PAID' : $invoice['invoice_status'];
 			
 			$invoices_report[$counter]['invoice_number']	=	$invoice['invoice_number'];
 			$invoices_report[$counter]['invoice_date']		=	$invoice['invoice_date_created'];
@@ -113,7 +126,7 @@
 		return $invoices_report;
 	}
 	
-	function invoices_report_with_product($client_id = 0)
+	function invoices_report_with_product($client_id = 0, $from_date = '', $to_date = '', $status = '')
 	{
 		$invoices_report = array();
 		$this->db->select('*');
@@ -124,6 +137,16 @@
 		{
 			$this->db->where('ci_invoices.client_id', $client_id);
 		}
+		if($from_date != '' && $to_date != '')
+		{
+			$this->db->where('invoice_date_created >=', date('Y-m-d', strtotime($from_date)));
+			$this->db->where('invoice_date_created <=', date('Y-m-d', strtotime($to_date)));
+		}
+		if($status != '')
+		{
+			$this->db->where('ci_invoices.invoice_status', $status);
+		}
+		
 		$this->db->order_by('ci_invoices.invoice_date_created', 'DESC');
 		$invoices = $this->db->get();
 		$counter = 0;
